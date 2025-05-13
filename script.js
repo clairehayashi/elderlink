@@ -1,7 +1,96 @@
 document.addEventListener('DOMContentLoaded', function() {
+  // Interactive family scene
+  setupFamilyInteractions();
+  
   // WiFi monitoring visualization
   setupMatrixVisualization();
 });
+
+// ====== Family Scene Interactions ======
+function setupFamilyInteractions() {
+  const familyMembers = document.querySelectorAll('.family-member');
+  const routerSignals = document.getElementById('router-signals');
+  
+  // Create tooltip element
+  const tooltip = document.createElement('div');
+  tooltip.className = 'tooltip';
+  document.body.appendChild(tooltip);
+  
+  // Create toast notification
+  const toast = document.createElement('div');
+  toast.className = 'toast-notification';
+  document.body.appendChild(toast);
+  
+  familyMembers.forEach(member => {
+    // Show name on hover
+    member.addEventListener('mouseenter', (e) => {
+      const name = member.getAttribute('data-name');
+      tooltip.textContent = name;
+      
+      // Position tooltip near the member
+      const rect = member.getBoundingClientRect();
+      tooltip.style.left = `${rect.left + rect.width/2 - tooltip.offsetWidth/2}px`;
+      tooltip.style.top = `${rect.top - tooltip.offsetHeight - 10}px`;
+      tooltip.style.opacity = '1';
+    });
+    
+    member.addEventListener('mouseleave', () => {
+      tooltip.style.opacity = '0';
+    });
+    
+    // Handle click - smile and show router signals
+    member.addEventListener('click', () => {
+      // Get the member's mouth element
+      const mouthId = member.querySelector('path[id$="-mouth"]').id;
+      const mouth = document.getElementById(mouthId);
+      
+      // Smile effect by changing the path's d attribute
+      const memberName = member.getAttribute('data-name');
+      
+      // Make mouth smile
+      if (mouthId === 'elderly-mouth') {
+        mouth.setAttribute('d', 'M 340 315 Q 350 325, 360 315');
+      } else if (mouthId === 'adult1-mouth') {
+        mouth.setAttribute('d', 'M 440 315 Q 450 325, 460 315');
+      } else if (mouthId === 'adult2-mouth') {
+        mouth.setAttribute('d', 'M 540 315 Q 550 325, 560 315');
+      } else if (mouthId === 'toddler-mouth') {
+        mouth.setAttribute('d', 'M 645 320 Q 650 330, 655 320');
+      }
+      
+      // Show router signals
+      routerSignals.style.opacity = '1';
+      routerSignals.style.animation = 'pulse 1.5s infinite';
+      
+      // Show toast notification
+      toast.textContent = `Movement detected: ${memberName} is active`;
+      toast.classList.remove('hide');
+      toast.classList.add('show');
+      
+      // Reset after a few seconds
+      setTimeout(() => {
+        // Reset mouth
+        if (mouthId === 'elderly-mouth') {
+          mouth.setAttribute('d', 'M 340 320 Q 350 320, 360 320');
+        } else if (mouthId === 'adult1-mouth') {
+          mouth.setAttribute('d', 'M 440 320 Q 450 320, 460 320');
+        } else if (mouthId === 'adult2-mouth') {
+          mouth.setAttribute('d', 'M 540 320 Q 550 320, 560 320');
+        } else if (mouthId === 'toddler-mouth') {
+          mouth.setAttribute('d', 'M 645 325 Q 650 325, 655 325');
+        }
+        
+        // Hide router signals
+        routerSignals.style.opacity = '0';
+        routerSignals.style.animation = 'none';
+        
+        // Hide toast
+        toast.classList.remove('show');
+        toast.classList.add('hide');
+      }, 3000);
+    });
+  });
+}
 
 // ====== WiFi Matrix Visualization ======
 function setupMatrixVisualization() {

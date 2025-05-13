@@ -61,14 +61,13 @@ nav {
   color: #3a7bd5;
 }
 
-/* New Hero Section with Background Image */
+/* New Hero Section */
 .hero {
   padding-top: 100px;
   min-height: 90vh;
   display: flex;
   align-items: center;
   position: relative;
-  overflow: hidden;
 }
 
 .hero-bg {
@@ -86,16 +85,10 @@ nav {
 
 .hero-content {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
-  justify-content: center;
-  text-align: center;
-  padding: 2rem;
-  background-color: rgba(255, 255, 255, 0.8);
-  border-radius: 10px;
-  max-width: 800px;
-  margin: 0 auto;
-  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+  justify-content: space-between;
+  gap: 2rem;
 }
 
 .hero-text {
@@ -112,9 +105,30 @@ nav {
 
 .hero p {
   max-width: 600px;
-  margin: 0 auto 2rem auto;
+  margin-bottom: 2rem;
   color: #666;
   font-size: 1.1rem;
+}
+
+.family-scene-container {
+  flex: 1;
+  max-width: 600px;
+}
+
+#family-scene {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+.family-member {
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.family-member:hover {
+  transform: scale(1.05);
 }
 
 /* WiFi Monitoring Section (Previous Hero) */
