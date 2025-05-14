@@ -1,9 +1,169 @@
+// Inline initialization script for family interactions
 document.addEventListener('DOMContentLoaded', function() {
-  // Interactive family scene
-  setupFamilyInteractions();
+  console.log('DOM fully loaded');
   
-  // WiFi monitoring visualization
-  setupMatrixVisualization();
+  // Add a separate script directly in document for the family interaction
+  const familyScript = document.createElement('script');
+  familyScript.textContent = `
+    (function() {
+      console.log('Initializing family interactions...');
+      const familyMembers = document.querySelectorAll('.family-member');
+      const routerSignals = document.getElementById('router-signals');
+      
+      console.log('Found family members:', familyMembers.length);
+      console.log('Found router signals:', routerSignals ? 'yes' : 'no');
+      
+      if (!familyMembers.length || !routerSignals) {
+        console.error('Family interaction elements not found');
+        return;
+      }
+      
+      // Create tooltip element
+      const tooltip = document.createElement('div');
+      tooltip.className = 'tooltip';
+      tooltip.style.position = 'absolute';
+      tooltip.style.backgroundColor = 'rgba(0, 0, 0, 0.8)';
+      tooltip.style.color = 'white';
+      tooltip.style.padding = '5px 10px';
+      tooltip.style.borderRadius = '4px';
+      tooltip.style.fontSize = '14px';
+      tooltip.style.pointerEvents = 'none';
+      tooltip.style.opacity = '0';
+      tooltip.style.transition = 'opacity 0.3s ease';
+      tooltip.style.zIndex = '1000';
+      document.body.appendChild(tooltip);
+      
+      // Create toast notification
+      const toast = document.createElement('div');
+      toast.className = 'toast-notification';
+      toast.style.position = 'fixed';
+      toast.style.top = '20px';
+      toast.style.right = '20px';
+      toast.style.padding = '15px 20px';
+      toast.style.backgroundColor = 'rgba(74, 144, 226, 0.9)';
+      toast.style.color = 'white';
+      toast.style.borderRadius = '8px';
+      toast.style.boxShadow = '0 4px 12px rgba(0, 0, 0, 0.15)';
+      toast.style.zIndex = '2000';
+      toast.style.transform = 'translateY(-100px)';
+      toast.style.opacity = '0';
+      toast.style.transition = 'transform 0.3s ease, opacity 0.3s ease';
+      document.body.appendChild(toast);
+      
+      // Define the show and hide toast classes
+      const showToast = function() {
+        toast.style.transform = 'translateY(0)';
+        toast.style.opacity = '1';
+      };
+      
+      const hideToast = function() {
+        toast.style.transform = 'translateY(-100px)';
+        toast.style.opacity = '0';
+      };
+      
+      // Define the animation for router signals
+      const pulseAnimation = '@keyframes pulse { 0% { opacity: 0.3; } 50% { opacity: 1; } 100% { opacity: 0.3; } }';
+      const style = document.createElement('style');
+      style.textContent = pulseAnimation;
+      document.head.appendChild(style);
+
+      console.log('Set up tooltip and toast');
+      
+      familyMembers.forEach((member, index) => {
+        // Add event listeners directly to the SVG elements
+        member.addEventListener('mouseenter', function(e) {
+          const name = this.getAttribute('data-name');
+          tooltip.textContent = name;
+          
+          // Position tooltip near the member
+          const rect = this.getBoundingClientRect();
+          tooltip.style.left = rect.left + rect.width/2 - tooltip.offsetWidth/2 + 'px';
+          tooltip.style.top = rect.top - tooltip.offsetHeight - 10 + 'px';
+          tooltip.style.opacity = '1';
+          
+          console.log('Mouse entered', name);
+        });
+        
+        member.addEventListener('mouseleave', function() {
+          tooltip.style.opacity = '0';
+        });
+        
+        // Handle click - smile and show router signals
+        member.addEventListener('click', function() {
+          console.log('Clicked member');
+          
+          // Get the member's mouth element
+          let mouthId;
+          try {
+            mouthId = this.querySelector('path[id$="-mouth"]').id;
+          } catch (e) {
+            console.error('Could not find mouth element', e);
+            return;
+          }
+          
+          const mouth = document.getElementById(mouthId);
+          
+          if (!mouth) {
+            console.log('Could not find mouth element with id ' + mouthId);
+            return;
+          }
+          
+          // Smile effect by changing the path's d attribute
+          const memberName = this.getAttribute('data-name');
+          console.log('Clicked on ' + memberName);
+          
+          // Make mouth smile
+          if (mouthId === 'elderly-mouth') {
+            mouth.setAttribute('d', 'M 340 315 Q 350 325, 360 315');
+          } else if (mouthId === 'adult1-mouth') {
+            mouth.setAttribute('d', 'M 440 315 Q 450 325, 460 315');
+          } else if (mouthId === 'adult2-mouth') {
+            mouth.setAttribute('d', 'M 540 315 Q 550 325, 560 315');
+          } else if (mouthId === 'toddler-mouth') {
+            mouth.setAttribute('d', 'M 645 320 Q 650 330, 655 320');
+          }
+          
+          // Show router signals
+          routerSignals.style.opacity = '1';
+          routerSignals.style.animation = 'pulse 1.5s infinite';
+          
+          // Show toast notification
+          toast.textContent = 'Movement detected: ' + memberName + ' is active';
+          showToast();
+          
+          // Reset after a few seconds
+          setTimeout(function() {
+            // Reset mouth
+            if (mouthId === 'elderly-mouth') {
+              mouth.setAttribute('d', 'M 340 320 Q 350 320, 360 320');
+            } else if (mouthId === 'adult1-mouth') {
+              mouth.setAttribute('d', 'M 440 320 Q 450 320, 460 320');
+            } else if (mouthId === 'adult2-mouth') {
+              mouth.setAttribute('d', 'M 540 320 Q 550 320, 560 320');
+            } else if (mouthId === 'toddler-mouth') {
+              mouth.setAttribute('d', 'M 645 325 Q 650 325, 655 325');
+            }
+            
+            // Hide router signals
+            routerSignals.style.opacity = '0';
+            routerSignals.style.animation = 'none';
+            
+            // Hide toast
+            hideToast();
+          }, 3000);
+        });
+      });
+      
+      console.log('Added all event listeners');
+    })();
+  `;
+  
+  document.body.appendChild(familyScript);
+  
+  // WiFi monitoring visualization (keep this separated)
+  setTimeout(function() {
+    setupMatrixVisualization();
+  }, 500);
 });
 
 // ====== Family Scene Interactions ======
