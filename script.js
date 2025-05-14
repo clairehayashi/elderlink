@@ -11,6 +11,11 @@ function setupFamilyInteractions() {
   const familyMembers = document.querySelectorAll('.family-member');
   const routerSignals = document.getElementById('router-signals');
   
+  if (!familyMembers.length || !routerSignals) {
+    console.log('Family interaction elements not found');
+    return;
+  }
+  
   // Create tooltip element
   const tooltip = document.createElement('div');
   tooltip.className = 'tooltip';
@@ -20,8 +25,10 @@ function setupFamilyInteractions() {
   const toast = document.createElement('div');
   toast.className = 'toast-notification';
   document.body.appendChild(toast);
+
+  console.log(`Found ${familyMembers.length} family members to set up interactions`);
   
-  familyMembers.forEach(member => {
+  familyMembers.forEach((member, index) => {
     // Show name on hover
     member.addEventListener('mouseenter', (e) => {
       const name = member.getAttribute('data-name');
@@ -32,6 +39,8 @@ function setupFamilyInteractions() {
       tooltip.style.left = `${rect.left + rect.width/2 - tooltip.offsetWidth/2}px`;
       tooltip.style.top = `${rect.top - tooltip.offsetHeight - 10}px`;
       tooltip.style.opacity = '1';
+      
+      console.log(`Mouse entered ${name}`);
     });
     
     member.addEventListener('mouseleave', () => {
@@ -44,8 +53,14 @@ function setupFamilyInteractions() {
       const mouthId = member.querySelector('path[id$="-mouth"]').id;
       const mouth = document.getElementById(mouthId);
       
+      if (!mouth) {
+        console.log(`Could not find mouth element with id ${mouthId}`);
+        return;
+      }
+      
       // Smile effect by changing the path's d attribute
       const memberName = member.getAttribute('data-name');
+      console.log(`Clicked on ${memberName}`);
       
       // Make mouth smile
       if (mouthId === 'elderly-mouth') {
@@ -89,7 +104,12 @@ function setupFamilyInteractions() {
         toast.classList.add('hide');
       }, 3000);
     });
+    
+    // Add hover style directly to make it more noticeable
+    member.style.cursor = 'pointer';
   });
+  
+  console.log('Family interactions setup complete');
 }
 
 // ====== WiFi Matrix Visualization ======
