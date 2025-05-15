@@ -61,7 +61,7 @@ nav {
   color: #3a7bd5;
 }
 
-/* New Hero Section */
+/* Hero Section */
 .hero {
   padding-top: 100px;
   min-height: 90vh;
@@ -89,19 +89,15 @@ nav {
   align-items: center;
   justify-content: space-between;
   gap: 2rem;
-  z-index: 2;
 }
 
 .hero-text {
   flex: 1;
-  background-color: rgba(255, 255, 255, 0.8);
-  padding: 2rem;
-  border-radius: 10px;
-  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+  max-width: 600px;
 }
 
 .hero h1 {
-  font-size: 2.8rem;
+  font-size: 2.6rem;
   font-weight: 700;
   margin-bottom: 1.5rem;
   line-height: 1.3;
@@ -115,9 +111,153 @@ nav {
   font-size: 1.1rem;
 }
 
+.hero-buttons {
+  display: flex;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.hero-btn-primary {
+  background-color: #333;
+  color: white;
+}
+
+.hero-btn-primary:hover {
+  background-color: #222;
+}
+
+/* Family Illustration */
+.family-illustration {
+  flex: 0.8;
+  max-width: 400px;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  position: relative;
+}
+
+.wifi-illustration {
+  position: relative;
+  height: 250px;
+}
+
+.wifi-box {
+  background-color: #f0f8ff;
+  width: 80px;
+  height: 80px;
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.wifi-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  width: 100%;
+  height: 100%;
+}
+
+.grid-cell {
+  border: 1px solid #ddd;
+}
+
+.wifi-router {
+  position: absolute;
+  width: 60px;
+  height: 15px;
+  background-color: #333;
+  top: 120px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 3px;
+}
+
+.family-group {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  gap: 10px;
+}
+
+.family-member {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.head {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background-color: #f8d7a4;
+  position: relative;
+}
+
+.head::before, .head::after {
+  content: '';
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background-color: #333;
+  border-radius: 50%;
+  top: 10px;
+}
+
+.head::before {
+  left: 7px;
+}
+
+.head::after {
+  right: 7px;
+}
+
+.body {
+  width: 30px;
+  height: 45px;
+  border-radius: 5px 5px 0 0;
+  margin-top: 2px;
+}
+
+/* Family member colors */
+.grandpa .body {
+  background-color: #3a86ff;
+}
+
+.mom .body {
+  background-color: #e63946;
+}
+
+.dad .body {
+  background-color: #457b9d;
+}
+
+.child .body {
+  background-color: #ffbe0b;
+  height: 35px;
+}
+
+.hero p {
+  max-width: 600px;
+  margin-bottom: 2rem;
+  color: #666;
+  font-size: 1.1rem;
+}
+
 .family-scene-container {
   flex: 1;
   max-width: 600px;
+  z-index: 2;
+  position: relative;
 }
 
 #family-scene {
@@ -125,15 +265,18 @@ nav {
   height: auto;
   border-radius: 10px;
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  background-color: white;
 }
 
 .family-member {
-  cursor: pointer;
+  cursor: pointer !important;
   transition: transform 0.3s ease;
+  pointer-events: all;
 }
 
 .family-member:hover {
   transform: scale(1.05);
+  filter: brightness(1.2);
 }
 
 /* WiFi Monitoring Section (Previous Hero) */
