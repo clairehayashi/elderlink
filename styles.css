@@ -61,189 +61,43 @@ nav {
   color: #3a7bd5;
 }
 
-/* Hero Section */
-.hero {
-  padding-top: 100px;
-  min-height: 90vh;
-  display: flex;
-  align-items: center;
-  position: relative;
-}
-
-.hero-bg {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-image: url('untitled.jpg');
-  background-size: cover;
-  background-position: center;
-  opacity: 0.3;
-  z-index: -1;
-}
-
-.hero-content {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-  gap: 2rem;
-}
-
-.hero-text {
-  flex: 1;
-  max-width: 600px;
-}
-
-.hero h1 {
-  font-size: 2.6rem;
-  font-weight: 700;
-  margin-bottom: 1.5rem;
-  line-height: 1.3;
-  color: #2c3e50;
-}
-
-.hero p {
-  max-width: 600px;
-  margin-bottom: 2rem;
-  color: #666;
-  font-size: 1.1rem;
-}
-
-.hero-buttons {
-  display: flex;
-  gap: 1rem;
-  margin-top: 2rem;
-}
-
-.hero-btn-primary {
-  background-color: #333;
+/* Button Styles (For regular buttons not in hero) */
+.btn {
+  display: inline-block;
+  padding: 0.8rem 2rem;
+  background-color: #3a7bd5;
   color: white;
+  border-radius: 50px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  border: none;
+  cursor: pointer;
 }
 
-.hero-btn-primary:hover {
-  background-color: #222;
+.btn:hover {
+  background-color: #2a6ac5;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(58, 123, 213, 0.2);
 }
 
-/* Family Illustration */
-.family-illustration {
-  flex: 0.8;
-  max-width: 400px;
-  background-color: white;
-  border-radius: 10px;
-  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
-  padding: 20px;
-  position: relative;
+.btn-outline {
+  display: inline-block;
+  padding: 0.8rem 2rem;
+  background-color: transparent;
+  color: #3a7bd5;
+  border: 2px solid #3a7bd5;
+  border-radius: 50px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  cursor: pointer;
 }
 
-.wifi-illustration {
-  position: relative;
-  height: 250px;
-}
-
-.wifi-box {
-  background-color: #f0f8ff;
-  width: 80px;
-  height: 80px;
-  position: absolute;
-  top: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  border: 1px solid #ddd;
-  border-radius: 4px;
-}
-
-.wifi-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr 1fr;
-  width: 100%;
-  height: 100%;
-}
-
-.grid-cell {
-  border: 1px solid #ddd;
-}
-
-.wifi-router {
-  position: absolute;
-  width: 60px;
-  height: 15px;
-  background-color: #333;
-  top: 120px;
-  left: 50%;
-  transform: translateX(-50%);
-  border-radius: 3px;
-}
-
-.family-group {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 80px;
-  display: flex;
-  justify-content: center;
-  align-items: flex-end;
-  gap: 10px;
-}
-
-.family-member {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.head {
-  width: 25px;
-  height: 25px;
-  border-radius: 50%;
-  background-color: #f8d7a4;
-  position: relative;
-}
-
-.head::before, .head::after {
-  content: '';
-  position: absolute;
-  width: 4px;
-  height: 4px;
-  background-color: #333;
-  border-radius: 50%;
-  top: 10px;
-}
-
-.head::before {
-  left: 7px;
-}
-
-.head::after {
-  right: 7px;
-}
-
-.body {
-  width: 30px;
-  height: 45px;
-  border-radius: 5px 5px 0 0;
-  margin-top: 2px;
-}
-
-/* Family member colors */
-.grandpa .body {
-  background-color: #3a86ff;
-}
-
-.mom .body {
-  background-color: #e63946;
-}
-
-.dad .body {
-  background-color: #457b9d;
-}
-
-.child .body {
-  background-color: #ffbe0b;
-  height: 35px;
+.btn-outline:hover {
+  background-color: rgba(58, 123, 213, 0.1);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(58, 123, 213, 0.1);
 }
 
 .hero p {
