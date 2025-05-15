@@ -139,7 +139,7 @@ nav {
   left: 0;
   width: 100%;
   height: 100%;
-  background-image: url('untitled.jpg');
+  background-image: url('untitled.png');
   background-size: cover;
   background-position: center;
   opacity: 0.3;
@@ -157,6 +157,10 @@ nav {
 .hero-text {
   flex: 1;
   max-width: 600px;
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
 
 .hero h1 {
@@ -174,6 +178,10 @@ nav {
   font-size: 1.1rem;
 }
 
+.highlight {
+  color: #3a7bd5;
+}
+
 .hero-buttons {
   display: flex;
   gap: 1rem;
@@ -185,80 +193,7 @@ nav {
   color: white !important;
 }
 
-.family-scene-container {
-  flex: 1;
-  max-width: 600px;
-  z-index: 2;
-  position: relative;
-}
-
-#family-scene {
-  width: 100%;
-  height: auto;
-  border-radius: 10px;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-  background-color: white;
-}
-
-.family-member {
-  cursor: pointer !important;
-  transition: transform 0.3s ease;
-  pointer-events: all;
-}
-
-.family-member:hover {
-  transform: scale(1.05);
-  filter: brightness(1.2);
-}
-
-/* Tooltip for family members */
-.tooltip {
-  position: absolute;
-  background-color: rgba(0, 0, 0, 0.8);
-  color: white;
-  padding: 5px 10px;
-  border-radius: 4px;
-  font-size: 14px;
-  pointer-events: none;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-  z-index: 1000;
-}
-
-/* Toast notification for family member click */
-.toast-notification {
-  position: fixed;
-  top: 20px;
-  right: 20px;
-  padding: 15px 20px;
-  background-color: rgba(74, 144, 226, 0.9);
-  color: white;
-  border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-  z-index: 2000;
-  transform: translateY(-100px);
-  opacity: 0;
-  transition: transform 0.3s ease, opacity 0.3s ease;
-}
-
-.toast-notification.show {
-  transform: translateY(0);
-  opacity: 1;
-}
-
-.toast-notification.hide {
-  transform: translateY(-100px);
-  opacity: 0;
-}
-
-/* Animation for router signals */
-@keyframes pulse {
-  0% { opacity: 0.3; }
-  50% { opacity: 1; }
-  100% { opacity: 0.3; }
-}
-
-/* WiFi Monitoring Section (Previous Hero) */
+/* WiFi Monitoring Section */
 .wifi-monitoring {
   height: 70vh;
   display: flex;
@@ -329,6 +264,7 @@ nav {
   border-radius: 4px;
 }
 
+/* Button Styles */
 .btn {
   display: inline-block;
   padding: 0.8rem 2rem;
@@ -662,8 +598,7 @@ footer {
     flex-direction: column;
   }
 
-  .family-scene-container {
-    width: 100%;
+  .hero-text {
     max-width: 100%;
   }
 
